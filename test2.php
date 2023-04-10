@@ -88,13 +88,13 @@
                     datasets: [
                         {
                             label: 'Water Temperature',
-                            data: data.waterTempData.map((point, index) => ({ x: index, y: point.y })),
+                            data: data.waterTempData.map((point, index) => ({ x: Date.parse(point.x), y: point.y })),
                             borderColor: 'rgba(75, 192, 192, 1)',
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
                         },
                         {
                             label: 'Target Temperature',
-                            data: data.targetTempData.map((point, index) => ({ x: index, y: point.y })),
+                            data: data.targetTempData.map((point, index) => ({ x: Date.parse(point.x), y: point.y })),
                             borderColor: 'rgba(255, 99, 132, 1)',
                             backgroundColor: 'rgba(255, 99, 132, 0.2)',
                         },
@@ -107,7 +107,18 @@
                             display: true,
                             title: {
                                 display: true,
-                                text: 'Data Points',
+                                text: 'Date',
+                            },
+                            ticks: {
+                                callback: function (value, index, values) {
+                                    return new Date(value).toLocaleDateString('fr-FR', {
+                                        year: 'numeric',
+                                        month: '2-digit',
+                                        day: '2-digit',
+                                        hour: '2-digit',
+                                        minute: '2-digit',
+                                    });
+                                },
                             },
                         },
                         y: {
