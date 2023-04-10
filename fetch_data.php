@@ -14,11 +14,11 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT date_data, water_temp FROM Data ORDER BY id_data DESC";
+$sql = "SELECT id_data, date_data, water_temp FROM Data ORDER BY id_data ASC";
 $result = $conn->query($sql);
 $waterTempData = [];
 while ($row = $result->fetch_assoc()) {
-    $waterTempData[] = ['x' => $row['date_data'], 'y' => $row['water_temp']];
+    $waterTempData[] = ['id_data' => $row['id_data'], 'x' => $row['date_data'], 'y' => $row['water_temp']];
 }
 
 $sql = "SELECT date_target, target_temp FROM target ORDER BY id_target DESC";
@@ -32,3 +32,4 @@ while ($row = $result->fetch_assoc()) {
 $conn->close();
 
 echo json_encode(['waterTempData' => $waterTempData, 'targetTempData' => $targetTempData]);
+?>
