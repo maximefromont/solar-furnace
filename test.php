@@ -178,12 +178,6 @@
                             borderColor: 'rgba(75, 192, 192, 1)',
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
                         },
-                        {
-                            label: 'Target Temperature',
-                            data: data.targetTempData.map((point, index) => ({ x: index, y: point.y })),
-                            borderColor: 'rgba(255, 99, 132, 1)',
-                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        },
                     ],
                 },
                 options: {
